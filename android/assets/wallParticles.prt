@@ -1,0 +1,45 @@
+{
+    "particles_per_second" : "40",
+    "x" : "0",
+    "y" : "0",
+    "width" : "80",
+    "height" : "1",
+    "particle_texture" : "particle.png",
+    "particle_settings" : [
+        {
+            "min_width" : "2",
+            "max_width" : "5",
+            "make_square" : "true",
+            "min_gravity_x" : "4",
+            "max_gravity_x" : "16",
+            "min_gravity_y" : "120",
+            "max_gravity_y" : "160",
+            "min_velocity_x" : "-10",
+            "max_velocity_x" : "-5",
+            "min_velocity_y" : "0",
+            "max_velocity_y" : "2",
+            "min_rotation" : "100",
+            "max_rotation" : "600",
+            "opacity" : "1",
+            "lifespan" : "3",
+            "fade_out" : "true"
+        },
+        {
+            "min_width" : "2",
+            "max_width" : "7",
+            "make_square" : "true",
+            "min_gravity_x" : "-16",
+            "max_gravity_x" : "-4",
+            "min_gravity_y" : "120",
+            "max_gravity_y" : "160",
+            "min_velocity_x" : "5"
+            "max_velocity_x" : "10",
+            "min_velocity_y" : "0",
+            "max_velocity_y" : "2",
+            "min_rotation" : "100",
+            "max_rotation" : "600",
+            "opacity" : "1",
+            "lifespan" : "3",
+        },
+    ]
+}
