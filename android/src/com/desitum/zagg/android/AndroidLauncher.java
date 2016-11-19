@@ -75,7 +75,7 @@ public class AndroidLauncher extends AndroidApplication implements GooglePlayInt
 
     private static final int REQUEST_CODE_RESOLVE_ERR = 9000;
 
-    private static final String TAG = "GooglePlayServicesActivity";
+    private static final String TAG = "GPServicesActivity";
 
     private static final String KEY_IN_RESOLUTION = "is_in_resolution";
 
