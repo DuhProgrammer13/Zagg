@@ -6,6 +6,6 @@ eclipse.project {
     name = appName + "-core"
 }
 dependencies {
-    compile files('libraries/libgdxLibrary.jar')
     compile files('libraries/json-simple.jar')
+    compile files('libraries/graphiks2d.jar')
 }

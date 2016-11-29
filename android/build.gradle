@@ -14,9 +14,6 @@ android {
 
         instrumentTest.setRoot('tests')
     }
-    dependencies {
-        compile 'com.google.android.gms:play-services:8.4.0'
-    }
     defaultConfig {
         // Enabling multidex support.
         multiDexEnabled true
@@ -119,4 +116,5 @@ idea {
 }
 dependencies {
     compile project(':core')
+    compile files('libs/graphiks2d.jar')
 }

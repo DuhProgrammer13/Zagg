@@ -77,9 +77,9 @@ public class World implements OnClickListener {
     }
 
     private void buildMenu() {
-        playButton = new Button(new Texture("play.png"), PLAY_BUTTON, 70, 10, 100, 90);
-        settingsButton = new Button(new Texture("settings.png"), SETTINGS_BUTTON, 70, 10, 100, 70);
-        shareButton = new Button(new Texture("share.png"), SHARE_BUTTON, 70, 10, 100, 50);
+        playButton = new Button(new Texture("play.png"), PLAY_BUTTON, 70, 10, 100, 90, null);
+        settingsButton = new Button(new Texture("settings.png"), SETTINGS_BUTTON, 70, 10, 100, 70, null);
+        shareButton = new Button(new Texture("share.png"), SHARE_BUTTON, 70, 10, 100, 50, null);
 
         BitmapFont font = new BitmapFont(Gdx.files.internal("fonts/tech.fnt"), new TextureRegion(new Texture("fonts/tech.png")));
 
@@ -88,20 +88,6 @@ public class World implements OnClickListener {
 
         label.setAlignment(LinearLayout.ALIGNMENT_CENTER);
         label.setText("Zagg");
-
-        MovementAnimator playAnimator = new MovementAnimator(playButton, 100, 30, 0.5f, 0, Interpolation.DECELERATE_INTERPOLATOR, true, false);
-        MovementAnimator settingsAnimator = new MovementAnimator(settingsButton, 100, 30, 0.5f, 0.2f, Interpolation.DECELERATE_INTERPOLATOR, true, false);
-        MovementAnimator shareAnimator = new MovementAnimator(shareButton, 100, 30, 0.5f, 0.4f, Interpolation.DECELERATE_INTERPOLATOR, true, false);
-        playButton.addIncomingAnimator(playAnimator);
-        settingsButton.addIncomingAnimator(settingsAnimator);
-        shareButton.addIncomingAnimator(shareAnimator);
-
-        MovementAnimator playAnimatorOut = new MovementAnimator(playButton, 30, 110, 0.5f, 0, Interpolation.ACCELERATE_INTERPOLATOR, true, false);
-        MovementAnimator settingsAnimatorOut = new MovementAnimator(playButton, 30, 110, 0.5f, 0, Interpolation.ACCELERATE_INTERPOLATOR, true, false);
-        MovementAnimator shareAnimatorOut = new MovementAnimator(playButton, 30, 110, 0.5f, 0, Interpolation.ACCELERATE_INTERPOLATOR, true, false);
-        playButton.addOutgoingAnimator(playAnimatorOut);
-        settingsButton.addOutgoingAnimator(settingsAnimatorOut);
-        shareButton.addOutgoingAnimator(shareAnimatorOut);
 
         playButton.setOnClickListener(this);
         settingsButton.setOnClickListener(this);
@@ -167,6 +153,11 @@ public class World implements OnClickListener {
     }
 
     @Override
+    public void onClickDown(Widget widget) {
+
+    }
+
+    @Override
     public void onClick(Widget widget) {
         if (widget.getName().equals(PLAY_BUTTON)) {
             moveMenuOut();
@@ -180,15 +171,20 @@ public class World implements OnClickListener {
     }
 
     public void moveMenuIn() {
-        playButton.startIncomingAnimators();
-        settingsButton.startIncomingAnimators();
-        shareButton.startIncomingAnimators();
+        MovementAnimator playAnimator = new MovementAnimator(playButton, 100, 30, 0.5f, 0, Interpolation.DECELERATE_INTERPOLATOR, true, false);
+        MovementAnimator settingsAnimator = new MovementAnimator(settingsButton, 100, 30, 0.5f, 0.2f, Interpolation.DECELERATE_INTERPOLATOR, true, false);
+        MovementAnimator shareAnimator = new MovementAnimator(shareButton, 100, 30, 0.5f, 0.4f, Interpolation.DECELERATE_INTERPOLATOR, true, false);
+        playButton.startAnimator(playAnimator);
+        settingsButton.startAnimator(settingsAnimator);
+        shareButton.startAnimator(shareAnimator);
     }
 
-    private void moveMenuOut() {
-        playButton.startOutgoingAnimators();
-        settingsButton.startOutgoingAnimators();
-        shareButton.startOutgoingAnimators();
+    private void moveMenuOut() {MovementAnimator playAnimatorOut = new MovementAnimator(playButton, 30, 110, 0.5f, 0, Interpolation.ACCELERATE_INTERPOLATOR, true, false);
+        MovementAnimator settingsAnimatorOut = new MovementAnimator(playButton, 30, 110, 0.5f, 0, Interpolation.ACCELERATE_INTERPOLATOR, true, false);
+        MovementAnimator shareAnimatorOut = new MovementAnimator(playButton, 30, 110, 0.5f, 0, Interpolation.ACCELERATE_INTERPOLATOR, true, false);
+        playButton.startAnimator(playAnimatorOut);
+        settingsButton.startAnimator(settingsAnimatorOut);
+        shareButton.startAnimator(shareAnimatorOut);
     }
 
     private void startGame() {

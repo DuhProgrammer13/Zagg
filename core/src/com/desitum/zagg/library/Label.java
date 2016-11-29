@@ -21,7 +21,7 @@ public class Label extends Widget {
     private int alignment;
 
     public Label(Texture texture, String name, float width, float height, float X, float Y, BitmapFont font, Camera camera) {
-        super(texture, name, width, height, X, Y);
+        super(texture, name, width, height, X, Y, null);
 
 
         this.text = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
