@@ -1,5 +1,5 @@
 android {
-    buildToolsVersion "23.0.2"
+    buildToolsVersion "23.0.3"
     compileSdkVersion 23
     sourceSets {
         main {
@@ -117,4 +117,5 @@ idea {
 dependencies {
     compile project(':core')
     compile files('libs/graphiks2d.jar')
+    compile files('libs/json-simple.jar')
 }

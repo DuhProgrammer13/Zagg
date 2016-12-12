@@ -1,8 +1,8 @@
 package com.desitum.zagg.game_objects;
 
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.desitum.zagg.GameScreen;
-import com.desitum.zagg.world.World;
+import com.desitum.zagg.ZaggGameScreen;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -17,10 +17,10 @@ public class WallManager {
     private ArrayList<WallSet> wallSets;
     private ArrayList<ColorChanger> colorChangers;
     private boolean produceWalls;
-    private World world;
+    private ZaggGameScreen world;
     private Random randomizer;
 
-    public WallManager(World world) {
+    public WallManager(ZaggGameScreen world) {
         this.world = world;
         wallSets = new ArrayList<WallSet>();
         colorChangers = new ArrayList<ColorChanger>();
@@ -43,15 +43,15 @@ public class WallManager {
 
         if (wallSets.size() < 8 && produceWalls) {
             WallSet lastWallSet = wallSets.get(wallSets.size() - 1);
-            if (lastWallSet.getMiddleX() < GameScreen.SCREEN_WIDTH - WallSet.SPREAD/2 && lastWallSet.getMiddleX() > WallSet.SPREAD/2) {
-                wallSets.add(new WallSet(lastWallSet.getMiddleX() + (randomizer.nextBoolean() ? 20 : -20), lastWallSet.getY() + Wall.HEIGHT*2, World.GAME_SPEED, world));
-            } else if (lastWallSet.getMiddleX() < GameScreen.SCREEN_WIDTH - WallSet.SPREAD/2) {
-                wallSets.add(new WallSet(lastWallSet.getMiddleX() + (randomizer.nextBoolean() ? 20 : 0), lastWallSet.getY() + Wall.HEIGHT*2, World.GAME_SPEED, world));
+            if (lastWallSet.getMiddleX() < com.desitum.zagg.ZaggGameScreen.SCREEN_WIDTH - WallSet.SPREAD/2 && lastWallSet.getMiddleX() > WallSet.SPREAD/2) {
+                wallSets.add(new WallSet(lastWallSet.getMiddleX() + (randomizer.nextBoolean() ? 20 : -20), lastWallSet.getY() + Wall.HEIGHT*2, ZaggGameScreen.GAME_SPEED, world));
+            } else if (lastWallSet.getMiddleX() < com.desitum.zagg.ZaggGameScreen.SCREEN_WIDTH - WallSet.SPREAD/2) {
+                wallSets.add(new WallSet(lastWallSet.getMiddleX() + (randomizer.nextBoolean() ? 20 : 0), lastWallSet.getY() + Wall.HEIGHT*2, ZaggGameScreen.GAME_SPEED, world));
             } else {
-                wallSets.add(new WallSet(lastWallSet.getMiddleX() + (randomizer.nextBoolean() ? 0 : -20), lastWallSet.getY() + Wall.HEIGHT*2, World.GAME_SPEED, world));
+                wallSets.add(new WallSet(lastWallSet.getMiddleX() + (randomizer.nextBoolean() ? 0 : -20), lastWallSet.getY() + Wall.HEIGHT*2, ZaggGameScreen.GAME_SPEED, world));
             }
             if (world.getPoints() >= 10 && world.getPoints() % 10 == 0) {
-                colorChangers.add(new ColorChanger(wallSets.get(wallSets.size() - 1).getMiddleX(), wallSets.get(wallSets.size() - 1).getY(), World.GAME_SPEED, world));
+                colorChangers.add(new ColorChanger(wallSets.get(wallSets.size() - 1).getMiddleX(), wallSets.get(wallSets.size() - 1).getY(), ZaggGameScreen.GAME_SPEED, world));
             }
         }
 
@@ -66,7 +66,7 @@ public class WallManager {
     public void start() {
         produceWalls = true;
         wallSets = new ArrayList<WallSet>();
-        WallSet wallSet1 = new WallSet(GameScreen.SCREEN_WIDTH/2, GameScreen.SCREEN_HEIGHT, World.GAME_SPEED, world);
+        WallSet wallSet1 = new WallSet(com.desitum.zagg.ZaggGameScreen.SCREEN_WIDTH/2, com.desitum.zagg.ZaggGameScreen.SCREEN_HEIGHT, ZaggGameScreen.GAME_SPEED, world);
         wallSets.add(wallSet1);
         colorChangers = new ArrayList<ColorChanger>();
     }
@@ -81,7 +81,7 @@ public class WallManager {
         }
     }
 
-    public void draw(SpriteBatch batch) {
+    public void draw(Batch batch) {
         for (WallSet wallSet: wallSets) {
             wallSet.draw(batch);
         }

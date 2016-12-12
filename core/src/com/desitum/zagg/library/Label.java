@@ -20,7 +20,7 @@ public class Label extends Widget {
     private String text;
     private int alignment;
 
-    public Label(Texture texture, String name, float width, float height, float X, float Y, BitmapFont font, Camera camera) {
+    public Label(Texture texture, String name, float width, float height, float X, float Y, BitmapFont font) {
         super(texture, name, width, height, X, Y, null);
 
 

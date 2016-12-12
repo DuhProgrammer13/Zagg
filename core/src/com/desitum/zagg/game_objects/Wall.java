@@ -1,16 +1,13 @@
 package com.desitum.zagg.game_objects;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Polygon;
 import com.desitum.library.animation.MovementAnimator;
 import com.desitum.library.game_objects.GameObject;
 import com.desitum.library.interpolation.Interpolation;
 import com.desitum.library.math.CollisionDetection;
 import com.desitum.zagg.Assets;
-import com.desitum.zagg.GameScreen;
+import com.desitum.zagg.ZaggGameScreen;
 
 /**
  * Created by kody on 12/19/15.
@@ -30,26 +27,8 @@ public class Wall extends GameObject {
     private MovementAnimator animIn;
     private MovementAnimator animOut;
 
-    public Wall(int l) {
-        super(Assets.leftFlag);
-    }
-
-    public Wall(TextureRegion textureRegion) {
-        super(textureRegion);
-    }
-
-    public Wall(Texture texture) {
-        super(texture);
-    }
-
-    //    public Wall(Texture texture) {
-//        super(texture);
-//    }
-//
     public Wall(float x, float y, int direction) {
-        super(Assets.leftFlag);
-        System.out.println(((direction == RIGHT) ? Assets.leftFlag : Assets.rightFlag));
-//        super(((direction == RIGHT) ? Assets.leftFlag : Assets.rightFlag));
+        super(((direction == RIGHT) ? Assets.leftFlag : Assets.rightFlag));
         setSize(WIDTH, HEIGHT);
         this.direction = direction;
 
@@ -59,11 +38,13 @@ public class Wall extends GameObject {
         if (direction == RIGHT) {
             setX(-100);
             animIn = new MovementAnimator(this, -WIDTH, x, 0.5f, 0, Interpolation.OVERSHOOT_INTERPOLATOR, true, false);
+            animIn.start(false);
             animOut = new MovementAnimator(this, x, -WIDTH, 0.5f, 0, Interpolation.ANTICIPATE_INTERPOLATOR, true, false);
         } else {
             setX(100);
-            animIn = new MovementAnimator(this, GameScreen.SCREEN_WIDTH, x, 0.5f, 0, Interpolation.OVERSHOOT_INTERPOLATOR, true, false);
-            animOut = new MovementAnimator(this, x, GameScreen.SCREEN_WIDTH, 0.5f, 0, Interpolation.ANTICIPATE_INTERPOLATOR, true, false);
+            animIn = new MovementAnimator(this, ZaggGameScreen.SCREEN_WIDTH, x, 0.5f, 0, Interpolation.OVERSHOOT_INTERPOLATOR, true, false);
+            animIn.start(false);
+            animOut = new MovementAnimator(this, x, ZaggGameScreen.SCREEN_WIDTH, 0.5f, 0, Interpolation.ANTICIPATE_INTERPOLATOR, true, false);
         }
     }
 

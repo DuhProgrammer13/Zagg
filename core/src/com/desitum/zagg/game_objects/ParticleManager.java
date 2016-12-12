@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.desitum.library.particles.Particle;
 import com.desitum.library.particles.ParticleBuilder;
 import com.desitum.library.particles.ParticleEmitter;
-import com.desitum.zagg.world.World;
+import com.desitum.zagg.ZaggGameScreen;
 
 /**
  * Created by kody on 12/20/15.
@@ -14,11 +14,11 @@ public class ParticleManager extends ParticleEmitter {
 
     //TODO this file needs a lot of love :)
 
-    private World world;
+    private ZaggGameScreen world;
 
     private static final int PARTICLE_AMOUNT = 5;
 
-    public ParticleManager(World world) {
+    public ParticleManager(ZaggGameScreen world) {
         ParticleEmitter emitter = ParticleBuilder.buildParticleEmitter(Gdx.files.internal("wallParticles.prt"));
         setParticleSettingsArrayList(emitter.getParticleSettingsArrayList());
         setParticleTexture(emitter.getParticleTexture());

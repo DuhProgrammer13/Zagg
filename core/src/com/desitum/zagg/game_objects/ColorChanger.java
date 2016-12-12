@@ -6,7 +6,7 @@ import com.desitum.library.animation.ScaleAnimator;
 import com.desitum.library.interpolation.Interpolation;
 import com.desitum.library.math.CollisionDetection;
 import com.desitum.zagg.Assets;
-import com.desitum.zagg.world.World;
+import com.desitum.zagg.ZaggGameScreen;
 
 import java.util.Random;
 
@@ -18,7 +18,7 @@ public class ColorChanger extends Sprite {
 
     public static final float SIZE = 7.5f;
 
-    private World world;
+    private ZaggGameScreen world;
     private float speed;
     private Color color;
     private boolean beenUsed;
@@ -31,7 +31,7 @@ public class ColorChanger extends Sprite {
     private static final Color PURPLE = Color.valueOf("#dc00c6ff");
     private static final Color YELLOW = Color.valueOf("#fafd27ff");
 
-    public ColorChanger (float middlex, float y, float speed, World world) {
+    public ColorChanger (float middlex, float y, float speed, ZaggGameScreen world) {
         super(Assets.particle);
         setSize(SIZE, SIZE);
         setPosition(middlex - SIZE/2, y);

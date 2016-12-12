@@ -1,10 +1,9 @@
 package com.desitum.zagg.game_objects;
 
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.desitum.zagg.Assets;
-import com.desitum.zagg.GameScreen;
-import com.desitum.zagg.world.World;
+import com.desitum.zagg.ZaggGameScreen;
 
 import java.util.ArrayList;
 
@@ -21,12 +20,15 @@ public class WallSet {
     private ArrayList<Wall> walls;
     private float y, middleX;
     private float speed;
-    private World world;
+    private ZaggGameScreen world;
     private int points;
 
-    public WallSet (float middlex, float y, float speed, World world) {
+    public WallSet (float middlex, float y, float speed, ZaggGameScreen world) {
         shapeRenderer = new ShapeRenderer();
         shapeRenderer.setAutoShapeType(true);
+        System.out.println(world);
+        System.out.println(world.getCam());
+        System.out.println(world.getCam().combined);
         shapeRenderer.setProjectionMatrix(world.getCam().combined);
 
         this.y = y;
@@ -36,16 +38,16 @@ public class WallSet {
         walls = new ArrayList<Wall>();
         this.middleX = middlex;
 
-//        Wall leftWall = new Wall(middlex - Wall.WIDTH - SPREAD/2, y, Wall.RIGHT);
-//        Wall rightWall = new Wall(middlex + SPREAD/2, y, Wall.LEFT);
+        Wall leftWall = new Wall(middlex - Wall.WIDTH - SPREAD/2, y, Wall.RIGHT);
+        Wall rightWall = new Wall(middlex + SPREAD/2, y, Wall.LEFT);
 //        Wall rightWall = new Wall(Assets.leftFlag);
 
-//        walls.add(leftWall);
-//        walls.add(rightWall);
+        walls.add(leftWall);
+        walls.add(rightWall);
     }
 
     public void update(float delta) {
-        if (getY() < GameScreen.SCREEN_HEIGHT) {
+        if (getY() < com.desitum.zagg.ZaggGameScreen.SCREEN_HEIGHT) {
             for (Wall wall: walls) wall.moveIn();
         }
 
@@ -72,7 +74,7 @@ public class WallSet {
         world.explodeWallSet(this);
     }
 
-    public void draw(SpriteBatch batch) {
+    public void draw(Batch batch) {
         for (Wall wall: walls) {
 //            shapeRenderer.begin();
 //            shapeRenderer.polygon(wall.getPolygon().getTransformedVertices());

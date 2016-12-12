@@ -6,8 +6,7 @@ import com.desitum.library.animation.Animator;
 import com.desitum.library.animation.MovementAnimator;
 import com.desitum.library.animation.OnAnimationFinishedListener;
 import com.desitum.library.interpolation.Interpolation;
-import com.desitum.zagg.GameScreen;
-import com.desitum.zagg.world.World;
+import com.desitum.zagg.ZaggGameScreen;
 
 
 /**
@@ -23,10 +22,10 @@ public class Diamond extends Sprite implements OnAnimationFinishedListener {
     private MovementAnimator animateOut;
     private int direction;
     private float speed;
-    private World world;
+    private ZaggGameScreen world;
     private boolean moving = false;
 
-    public Diamond(float size, float x, float y, float speed, World world) {
+    public Diamond(float size, float x, float y, float speed, ZaggGameScreen world) {
         super(new Texture("diamond.png"));
         setY(0 - size);
         setSize(size, size);
@@ -48,7 +47,7 @@ public class Diamond extends Sprite implements OnAnimationFinishedListener {
             switch (direction) {
                 case RIGHT:
                     this.setX(getX() + speed * delta);
-                    if (getX() + getWidth() >= GameScreen.SCREEN_WIDTH) {
+                    if (getX() + getWidth() >= ZaggGameScreen.SCREEN_WIDTH) {
                         direction = LEFT;
                         this.setX(getX() - speed * delta);
                     }

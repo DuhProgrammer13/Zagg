@@ -12,7 +12,7 @@ public class ZaggGame extends Game {
     @Override
     public void create() {
         Assets.load();
-        Screen gameScreen = new GameScreen(this);
+        Screen gameScreen = new ZaggGameScreen(this);
         this.setScreen(gameScreen);
     }
 
