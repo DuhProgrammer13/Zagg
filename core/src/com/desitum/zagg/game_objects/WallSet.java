@@ -2,6 +2,7 @@ package com.desitum.zagg.game_objects;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.desitum.zagg.Assets;
 import com.desitum.zagg.GameScreen;
 import com.desitum.zagg.world.World;
 
@@ -35,11 +36,12 @@ public class WallSet {
         walls = new ArrayList<Wall>();
         this.middleX = middlex;
 
-        Wall leftWall = new Wall(middlex - Wall.WIDTH - SPREAD/2, y, Wall.RIGHT);
-        Wall rightWall = new Wall(middlex + SPREAD/2, y, Wall.LEFT);
+//        Wall leftWall = new Wall(middlex - Wall.WIDTH - SPREAD/2, y, Wall.RIGHT);
+//        Wall rightWall = new Wall(middlex + SPREAD/2, y, Wall.LEFT);
+//        Wall rightWall = new Wall(Assets.leftFlag);
 
-        walls.add(leftWall);
-        walls.add(rightWall);
+//        walls.add(leftWall);
+//        walls.add(rightWall);
     }
 
     public void update(float delta) {

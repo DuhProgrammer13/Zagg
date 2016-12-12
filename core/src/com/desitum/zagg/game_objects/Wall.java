@@ -1,8 +1,12 @@
 package com.desitum.zagg.game_objects;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Polygon;
 import com.desitum.library.animation.MovementAnimator;
+import com.desitum.library.game_objects.GameObject;
 import com.desitum.library.interpolation.Interpolation;
 import com.desitum.library.math.CollisionDetection;
 import com.desitum.zagg.Assets;
@@ -12,7 +16,7 @@ import com.desitum.zagg.GameScreen;
  * Created by kody on 12/19/15.
  * can be used by kody and people in [kody}]
  */
-public class Wall extends Sprite {
+public class Wall extends GameObject {
 
     public static final int RIGHT = 0;
     public static final int LEFT = 1;
@@ -26,8 +30,26 @@ public class Wall extends Sprite {
     private MovementAnimator animIn;
     private MovementAnimator animOut;
 
+    public Wall(int l) {
+        super(Assets.leftFlag);
+    }
+
+    public Wall(TextureRegion textureRegion) {
+        super(textureRegion);
+    }
+
+    public Wall(Texture texture) {
+        super(texture);
+    }
+
+    //    public Wall(Texture texture) {
+//        super(texture);
+//    }
+//
     public Wall(float x, float y, int direction) {
-        super(((direction == RIGHT) ? Assets.leftFlag : Assets.rightFlag));
+        super(Assets.leftFlag);
+        System.out.println(((direction == RIGHT) ? Assets.leftFlag : Assets.rightFlag));
+//        super(((direction == RIGHT) ? Assets.leftFlag : Assets.rightFlag));
         setSize(WIDTH, HEIGHT);
         this.direction = direction;
 
@@ -52,13 +74,19 @@ public class Wall extends Sprite {
         if (direction == RIGHT) {
             polygon.setPosition(getX(), getY());
         } else {
-            polygon.setPosition(getX() - HEIGHT/2, getY());
+            polygon.setPosition(getX() - HEIGHT / 2, getY());
         }
+    }
+
+    @Override
+    public void draw(Batch batch) {
+        super.draw(batch);
+        System.out.println("WTF");
     }
 
     public boolean checkCollision(Diamond diamond) {
         if (CollisionDetection.overlapRectangles(getBoundingRectangle(), diamond.getBoundingRectangle())) {
-            if (polygon.contains(diamond.getX() + diamond.getWidth()/2, diamond.getY() + diamond.getHeight()/2)) {
+            if (polygon.contains(diamond.getX() + diamond.getWidth() / 2, diamond.getY() + diamond.getHeight() / 2)) {
                 return true;
             }
         }
@@ -71,18 +99,18 @@ public class Wall extends Sprite {
         float y = 0;
         if (direction == RIGHT) {
             returnVertices =
-                    new float[] { x, y,
+                    new float[]{x, y,
                             x + WIDTH, y,
-                            x + WIDTH + HEIGHT/2, y + HEIGHT/2,
+                            x + WIDTH + HEIGHT / 2, y + HEIGHT / 2,
                             x + WIDTH, y + HEIGHT,
                             x, y + HEIGHT};
         } else {
             returnVertices =
-                    new float[] { x, y + HEIGHT/2,
-                            x + HEIGHT/2, y,
+                    new float[]{x, y + HEIGHT / 2,
+                            x + HEIGHT / 2, y,
                             x + WIDTH, y,
                             x + WIDTH, y + HEIGHT,
-                            x + HEIGHT/2, y + HEIGHT};
+                            x + HEIGHT / 2, y + HEIGHT};
         }
         return returnVertices;
     }
@@ -92,7 +120,7 @@ public class Wall extends Sprite {
     }
 
     public void moveOut() {
-        if (!animOut.didFinish() && !animOut.isRunning())animOut.start(false);
+        if (!animOut.didFinish() && !animOut.isRunning()) animOut.start(false);
     }
 
     public Polygon getPolygon() {
